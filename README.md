@@ -1,5 +1,7 @@
 # zip-info-pwa
 
+## Built a progressive web app with Vue.js and Ionic 4
+
 ## Project setup
 ```
 npm install
