@@ -28,7 +28,23 @@ export default {
   },
   methods: {
     async getZipInfo(zip) {
-      console.log(zip);
+      const res = await fetch(`http://api.zippopotam.us/us/${zip}`);
+
+      if (res.status == 404) {
+        this.showAlert();
+      }
+
+      const info = await res.json();
+      console.log(info);
+    },
+    showAlert() {
+      return this.$ionic.alertController
+              .create({
+                header: "Not Valid",
+                message: "Please enter a valid US zipcode",
+                buttons: ["OK"]
+              })
+              .then(a => a.present());
     }
   }
 }
