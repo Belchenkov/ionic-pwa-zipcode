@@ -9,21 +9,26 @@
       <zip-search
         @get-zip="getZipInfo"
       />
+      <zip-info
+        :info="info"
+      />
     </ion-content>
   </div>
 </template>
 
 <script>
 import ZipSearch from "../components/ZipSearch";
+import ZipInfo from "../components/ZipInfo";
 
 export default {
   name: 'home',
   components: {
-    ZipSearch
+    ZipSearch,
+    ZipInfo
   },
   data() {
     return {
-
+      info: null
     }
   },
   methods: {
@@ -34,8 +39,7 @@ export default {
         this.showAlert();
       }
 
-      const info = await res.json();
-      console.log(info);
+      this.info = await res.json();
     },
     showAlert() {
       return this.$ionic.alertController
