@@ -12,6 +12,10 @@
       <zip-info
         :info="info"
       />
+      <clear-info
+        :info="info"
+        @clear-info="clearInfo"
+      ></clear-info>
     </ion-content>
   </div>
 </template>
@@ -19,12 +23,14 @@
 <script>
 import ZipSearch from "../components/ZipSearch";
 import ZipInfo from "../components/ZipInfo";
+import ClearInfo from "../components/ClearInfo";
 
 export default {
   name: 'home',
   components: {
     ZipSearch,
-    ZipInfo
+    ZipInfo,
+    ClearInfo
   },
   data() {
     return {
@@ -40,6 +46,9 @@ export default {
       }
 
       this.info = await res.json();
+    },
+    clearInfo() {
+      this.info = null;
     },
     showAlert() {
       return this.$ionic.alertController
